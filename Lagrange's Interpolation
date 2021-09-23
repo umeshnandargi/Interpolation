@@ -1,0 +1,35 @@
+# Lagrange's Interpolation
+
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+x = [0,1,2,5]
+y = [2,3,12,147]
+L = []
+xr = 3
+yr = 0
+for i in range(len(x)):
+    term = 1
+    for j in range(len(x)):
+        if i != j:
+            term *= ((xr - x[j])/(x[i] - x[j]))
+    L.append(term)
+
+lnp = np.array(L)
+ynp = np.array(y)
+yr = np.dot(lnp, ynp)
+print(yr)
+
+sns.set_style('whitegrid')
+xplot = np.array(x + [xr])
+yplot = np.array(y + [yr])
+m , c = np.polyfit(xplot, yplot, 1)
+
+plt.title("Lagranges's Interpolation")
+plt.xlabel('X values')
+plt.ylabel('y values')
+plt.plot(x,y, 'or')
+plt.plot(xr, yr, 'xb')
+plt.plot(xplot, m*xplot+c)
+plt.show()
