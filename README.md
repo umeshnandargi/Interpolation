@@ -1,2 +1,0 @@
-# Interpolation
-Lagrange's Interpolation
